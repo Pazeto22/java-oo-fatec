@@ -9,16 +9,54 @@ public class Produto {
     private float preco;
 
     // Método Construtor 1
+    public Produto() {
+    }
+
+    // Método Construtor 2
     public Produto(int id, String descricao,
             int qtde, float preco) {
         this.id = id;
         this.qtde = qtde;
         this.descricao = descricao;
-        this.preco = preco;
+        this.setPreco(preco);
     }
 
-    // Método Construtor 2
-    public Produto() {
+    // Setters
+    public void setPreco(float preco) {
+        if (preco >= 0) {
+            this.preco = preco;
+        } else {
+            System.out.println("Preço não pode ser vazio");
+        }
+    }
+
+    public void setQtde(int qtde) {
+        this.qtde = qtde;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    // Getters
+    public float getPreco() {
+        return this.preco;
+    }
+
+    public int getQtde() {
+        return this.qtde;
+    }
+
+    public int getId() {
+        return this.id;
+    }
+
+    public String getDescricao() {
+        return this.descricao;
     }
 
     // Métodos
@@ -35,7 +73,7 @@ public class Produto {
     }
 
     public void descer(float x) {
-        this.preco = this.preco - x;
+        this.setPreco(this.preco - x);
     }
 
     public String toString() {
