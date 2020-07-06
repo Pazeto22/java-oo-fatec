@@ -3,6 +3,7 @@ package br.edu.fatecfranca.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import br.edu.fatecfranca.entities.Bike;
 import br.edu.fatecfranca.repositories.BikeRepository;
 
+// API pode ser acessada por qualquer IP
+@CrossOrigin(origins = "*")
 // Informa que a classe responde requisição RESTFULL
 @RestController
 // Informa que a classe responde através da rota /api/bike

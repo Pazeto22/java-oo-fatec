@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    />
+    <script src="bike.js"></script>
+  </head>
+
+  <body onload="consulta()">
+    <header></header>
+    <section>
+      <div class="container">
+        <!-- 12 colunas -->
+        <h2>Exemplo de CRUD do Sistema de Bike</h2>
+        <form>
+          <input type="number" id="id" style="display: none;" />
+          <div class="form-group">
+            <label for="marca">Marca</label>
+            <input type="text" id="marca" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="modelo">Modelo</label>
+            <input type="text" id="modelo" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="aro">Aro</label>
+            <input type="number" id="aro" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="quadro">Quadro</label>
+            <input type="number" id="quadro" class="form-control" />
+          </div>
+          <button type="button" class="btn btn-primary" onclick="cadastra()">
+            Cadastra
+          </button>
+        </form>
+        <h2>Lista de Bikes</h2>
+        <table class="table" id="tabela">
+          <tr>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Aro</th>
+            <th>Quadro</th>
+            <th>Remove</th>
+            <th>Atualiza</th>
+          </tr>
+          <!-- O resto vai ser construido dinamicamente -->
+        </table>
+      </div>
+    </section>
+    <footer></footer>
+  </body>
+</html>
