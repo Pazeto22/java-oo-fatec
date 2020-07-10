@@ -13,36 +13,36 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.edu.fatecfranca.entities.Cidade;
-import br.edu.fatecfranca.repositories.CidadeRepository;
+import br.edu.fatecfranca.entities.Hotel;
+import br.edu.fatecfranca.repositories.HotelRepository;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/api/cidade")
-public class CidadeController {
+@RequestMapping("/api/hotel")
+public class HotelController {
 	
 	@Autowired
-	CidadeRepository injecao;
+	HotelRepository injecao;
 
 	@GetMapping
-	public List<Cidade> getCidades(){
+	public List<Hotel> getHotels(){
 		return injecao.findAll();
 	}
 	
 	@PostMapping
-	public Cidade addCidade(@RequestBody Cidade cidade) {
-		return injecao.save(cidade);
+	public Hotel addHotel(@RequestBody Hotel hotel) {
+		return injecao.save(hotel);
 	}
 	
 	@DeleteMapping("/{id}")
-	public boolean deleteCidade(@PathVariable Long id) {
+	public boolean deleteHotel(@PathVariable Long id) {
 		injecao.deleteById(id);
 		return true;
 	}
 
 	@PutMapping
-	public Cidade update(@RequestBody Cidade cidade) {
-		return injecao.save(cidade);
+	public Hotel update(@RequestBody Hotel hotel) {
+		return injecao.save(hotel);
 	}
 	
 }

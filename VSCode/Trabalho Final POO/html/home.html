@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Coisinhas do bootstrap -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.13.1/css/all.css"
+    />
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <!-- Minhas coisinhas -->
+    <link rel="stylesheet" href="../css/home.css" />
+    <script src="../js/bike.js"></script>
+    <script src="../js/cidade.js"></script>
+    <script src="../js/hotel.js"></script>
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar navbar-dark bg-dark fixed-top">
+        <!-- fixed-top w-100 -->
+        <a class="navbar-brand" href="#">
+          <i class="fas fa-laptop-code"></i>
+          Trabalho Final 4ADS-POO
+        </a>
+      </nav>
+    </header>
+
+    <section class="pt-5 mt-4">
+      <!-- ABAS -->
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item home">
+          <a
+            class="nav-link active"
+            id="home-tab"
+            data-toggle="tab"
+            href="#home"
+            role="tab"
+            aria-controls="home"
+            aria-selected="true"
+            onclick="consultaB()"
+            >Home</a
+          >
+        </li>
+        <li class="nav-item bike">
+          <a
+            class="nav-link"
+            id="bike-tab"
+            data-toggle="tab"
+            href="#bike"
+            role="tab"
+            aria-controls="bike"
+            aria-selected="false"
+            onclick="consultaB()"
+            >Bike</a
+          >
+        </li>
+        <li class="nav-item cidade">
+          <a
+            class="nav-link"
+            id="cidade-tab"
+            data-toggle="tab"
+            href="#cidade"
+            role="tab"
+            aria-controls="cidade"
+            aria-selected="false"
+            onclick="consultaC()"
+            >Cidade</a
+          >
+        </li>
+        <li class="nav-item hotel">
+          <a
+            class="nav-link"
+            id="hotel-tab"
+            data-toggle="tab"
+            href="#hotel"
+            role="tab"
+            aria-controls="hotel"
+            aria-selected="false"
+            onclick="consultaH()"
+            >Hotel</a
+          >
+        </li>
+      </ul>
+
+      <!-- CONTEÚDO DAS ABAS -->
+      <div class="tab-content pt-3" id="myTabContent">
+        <!-- HOME -->
+        <div
+          class="tab-pane fade show active"
+          id="home"
+          role="tabpanel"
+          aria-labelledby="home-tab"
+        >
+          <div class="container-fluid mt-3 mb-3">
+            <div class="text-center">
+              <h2>Trabalho Final de Programação Orientada a Objetos</h4>
+                <p>Brigadão por tudo, Daniel!</p>
+            </div>
+          </div>
+        </div>
+        <!-- BIKE -->
+        <div
+          class="tab-pane fade"
+          id="bike"
+          role="tabpanel"
+          aria-labelledby="bike-tab"
+        >
+          <div class="container">
+            <div class="row">
+              <div class="col-sd mr-3">
+                <h2>CRUD do Sistema de Bike</h2>
+                <form>
+                  <input type="number" id="idBike" style="display: none;" />
+                  <div class="form-group">
+                    <label for="marca">Marca</label>
+                    <input type="text" id="marca" class="form-control" />
+                  </div>
+                  <div class="form-group">
+                    <label for="modelo">Modelo</label>
+                    <input type="text" id="modelo" class="form-control" />
+                  </div>
+                  <div class="form-group">
+                    <label for="aro">Aro</label>
+                    <input type="number" id="aro" class="form-control" />
+                  </div>
+                  <div class="form-group">
+                    <label for="quadro">Quadro</label>
+                    <input type="number" id="quadro" class="form-control" />
+                  </div>
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    onclick="cadastrarBike()"
+                  >
+                    Cadastrar
+                  </button>
+                </form>
+              </div>
+              <div class="col-md ml-3">
+                <h2>Lista de Bikes</h2>
+                <div class="table-responsive">
+                  <table class="table" id="tabelaBike">
+                    <!-- O resto vai ser construido dinamicamente -->
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- CIDADE -->
+        <div
+          class="tab-pane fade"
+          id="cidade"
+          role="tabpanel"
+          aria-labelledby="cidade-tab"
+        >
+          <div class="container">
+            <div class="row">
+              <div class="col-sd mr-3">
+                <h2>CRUD do Sistema de Cidade</h2>
+                <form>
+                  <input type="number" id="idCidade" style="display: none;" />
+                  <div class="form-group">
+                    <label for="nomeCidade">Nome da Cidade</label>
+                    <input type="text" id="nomeCidade" class="form-control" />
+                  </div>
+                  <div class="form-group">
+                    <label for="pib">PIB</label>
+                    <input type="number" id="pib" class="form-control" />
+                  </div>
+                  <div class="form-group">
+                    <label for="populacao">População</label>
+                    <input type="number" id="populacao" class="form-control" />
+                  </div>
+                  <div class="form-group">
+                    <label for="prefeito">Prefeito</label>
+                    <input type="text" id="prefeito" class="form-control" />
+                  </div>
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    onclick="cadastrarCidade()"
+                  >
+                    Cadastrar
+                  </button>
+                </form>
+              </div>
+              <div class="col-md ml-3">
+                <h2>Lista de Cidades</h2>
+                <div class="table-responsive">
+                  <table class="table" id="tabelaCidade">
+                    <!-- O resto vai ser construido dinamicamente -->
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- HOTEL -->
+        <div
+          class="tab-pane fade"
+          id="hotel"
+          role="tabpanel"
+          aria-labelledby="hotel-tab"
+        >
+          <div class="container">
+            <div class="row">
+              <div class="col-sd mr-3">
+                <h2>CRUD do Sistema de Hotel</h2>
+                <form>
+                  <input type="number" id="idHotel" style="display: none;" />
+                  <div class="form-group">
+                    <label for="nomeHotel">Nome do Hotel</label>
+                    <input type="text" id="nomeHotel" class="form-control" />
+                  </div>
+                  <div class="form-group">
+                    <label for="capacidade">Capacidade</label>
+                    <input type="number" id="capacidade" class="form-control" />
+                  </div>
+                  <div class="form-group">
+                    <label for="estrelas">Estrelas</label>
+                    <input
+                      type="number"
+                      min="1"
+                      max="5"
+                      id="estrelas"
+                      class="form-control"
+                    />
+                  </div>
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    onclick="cadastrarHotel()"
+                  >
+                    Cadastrar
+                  </button>
+                </form>
+              </div>
+              <div class="col-md ml-3">
+                <h2>Lista de Hoteis</h2>
+                <div class="table-responsive">
+                  <table class="table" id="tabelaHotel">
+                    <!-- O resto vai ser construido dinamicamente -->
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer></footer>
+  </body>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</html>

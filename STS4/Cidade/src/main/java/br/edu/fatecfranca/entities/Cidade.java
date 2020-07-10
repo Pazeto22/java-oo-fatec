@@ -22,6 +22,7 @@ public class Cidade {
 	private Integer populacao;
 	@Column(name="prefeito")
 	private String prefeito;
+	
 	public Long getId() {
 		return id;
 	}

@@ -1,10 +1,12 @@
-function cadastra() {
+function cadastrarBike() {
   // recupera os valores do usuário
   var bike = new Object(); //cria um objeto
   bike.marca = document.getElementById("marca").value;
   bike.modelo = document.getElementById("modelo").value;
   bike.aro = Number(document.getElementById("aro").value);
   bike.quadro = Number(document.getElementById("quadro").value);
+  //para atualização
+  bike.id = Number(document.getElementById("idBike").value);
 
   // consumir API para inserção = POST
   var request = new XMLHttpRequest(); // objeto de requisição
@@ -28,7 +30,7 @@ function cadastra() {
   location.reload();
 }
 
-function consulta() {
+function consultaB() {
   //cria um objeto de requisição
   var request = new XMLHttpRequest();
   // abre a conexão
@@ -39,15 +41,28 @@ function consulta() {
       console.log("Conectou na API");
       // recuperar os dados
       var bikes = JSON.parse(this.response); // converte de JSON para objeto
-      // cria as linhas da tabela
-      // recupera a tabela
-      var tabela = document.getElementById("tabela");
+      // cria as linhas da tabelaBike
+      // recupera a tabelaBike
+      var tabelaBike = document.getElementById("tabelaBike");
+      // apaga dados passados
+      tabelaBike.innerHTML = `
+      <thead class="thead-dark">
+      <tr>
+      <th>Marca</th>
+      <th>Modelo</th>
+      <th>Aro</th>
+      <th>Quadro</th>
+      <th>Atualizar</th>
+      <th>Remover</th>
+      </tr>
+      </thead>
+      `;
       bikes.forEach((bike) => {
-        // cria a linha da tabela
+        // cria a linha da tabelaBike
         var linha = document.createElement("tr");
-        // adiciona linha na tabela
-        tabela.appendChild(linha);
-        // cria as colunas da tabela
+        // adiciona linha na tabelaBike
+        tabelaBike.appendChild(linha);
+        // cria as colunas da tabelaBike
         var cel1 = document.createElement("td");
         cel1.textContent = bike.marca;
         var cel2 = document.createElement("td");
@@ -57,16 +72,16 @@ function consulta() {
         var cel4 = document.createElement("td");
         cel4.textContent = bike.quadro;
         var cel5 = document.createElement("td");
-        var imageRemove = document.createElement("img");
-        imageRemove.setAttribute("src", "remove.png");
-        imageRemove.setAttribute("onclick", `remove(${bike.id})`);
-        var cel6 = document.createElement("td");
-        var imagemAtualiza = document.createElement("img");
-        imagemAtualiza.setAttribute("src", "atualiza.png");
-        imagemAtualiza.setAttribute(
+        var buttonAtualizar = document.createElement("span");
+        buttonAtualizar.innerHTML = "<i class='fas fa-sync-alt'></i>";
+        buttonAtualizar.setAttribute(
           "onclick",
-          `atualiza(${JSON.stringify(bike)})`
+          `atualizarBike(${JSON.stringify(bike)})`
         );
+        var cel6 = document.createElement("td");
+        var buttonRemover = document.createElement("span");
+        buttonRemover.innerHTML = "<i class='fas fa-trash'></i>";
+        buttonRemover.setAttribute("onclick", `removerBike(${bike.id})`);
 
         // colocar as células dentro da linha
         linha.appendChild(cel1);
@@ -75,8 +90,8 @@ function consulta() {
         linha.appendChild(cel4);
         linha.appendChild(cel5);
         linha.appendChild(cel6);
-        cel5.appendChild(imageRemove);
-        cel6.appendChild(imagemAtualiza);
+        cel5.appendChild(buttonAtualizar);
+        cel6.appendChild(buttonRemover);
       });
     } else {
       console.log("Não conectou na API");
@@ -85,7 +100,7 @@ function consulta() {
   request.send();
 }
 
-function remove(id) {
+function removerBike(id) {
   var request = new XMLHttpRequest();
   request.open("DELETE", `http://localhost:8080/api/bike/${id}`, true);
   request.onload = function () {
@@ -98,4 +113,13 @@ function remove(id) {
   request.send();
   alert("Remoção realizada com sucesso");
   location.reload(); // atualiza a página
+}
+
+function atualizarBike(bike) {
+  // copiar o conteúdo da linha para as caixas de texto do cadastro
+  document.getElementById("marca").value = bike.marca;
+  document.getElementById("modelo").value = bike.modelo;
+  document.getElementById("aro").value = bike.aro;
+  document.getElementById("quadro").value = bike.quadro;
+  document.getElementById("idBike").value = bike.id;
 }

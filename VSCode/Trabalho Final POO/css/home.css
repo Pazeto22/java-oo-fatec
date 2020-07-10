@@ -1,0 +1,16 @@
+.fas {
+  cursor: pointer;
+}
+
+.fa-sync-alt:hover {
+  color: #007bff !important;
+}
+
+.fa-trash:hover {
+  color: #c82333 !important;
+}
+
+table td,
+table th {
+  text-align: center;
+}
